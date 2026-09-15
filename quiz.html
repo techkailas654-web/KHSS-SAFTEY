@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Road Safety Quiz</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#e8f5e9;
+margin:0;
+}
+
+header{
+background:#2e7d32;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+nav{
+background:#1b5e20;
+text-align:center;
+padding:12px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:15px;
+font-weight:bold;
+}
+
+.container{
+width:90%;
+max-width:700px;
+margin:30px auto;
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+}
+
+.question{
+font-size:22px;
+margin-bottom:20px;
+}
+
+button{
+width:100%;
+padding:12px;
+margin:8px 0;
+font-size:18px;
+background:#43a047;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#2e7d32;
+}
+
+#result{
+text-align:center;
+font-size:24px;
+font-weight:bold;
+margin-top:20px;
+}
+
+footer{
+background:#2e7d32;
+color:white;
+text-align:center;
+padding:15px;
+margin-top:30px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>🧠 Road Safety Quiz</h1>
+<p>Test Your Knowledge</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="traffic-signs.html">Traffic Signs</a>
+<a href="quiz.html">Quiz</a>
+<a href="games.html">Games</a>
+<a href="parent.html">parent</a>
+<a href="bicycle.html">bicycle</a>
+</nav>
+
+<div class="container">
+
+<div id="quiz">
+
+<h2 id="question"></h2>
+
+<div id="answers"></div>
+
+</div>
+
+<div id="result"></div>
+
+</div>
+
+<footer>
+SAFE ROADS, SAFE LIVES<br>
+Little KITEs & SEED Club
+</footer>
+
+<script>
+
+const quiz=[
+
+{
+q:"What does a RED traffic light mean?",
+a:["Go","Stop","Turn Left","Speed Up"],
+c:1
+},
+
+{
+q:"Which safety gear must a motorcyclist wear?",
+a:["Cap","Helmet","Shoes","Gloves"],
+c:1
+},
+
+{
+q:"Where should pedestrians cross the road?",
+a:["Anywhere","Zebra Crossing","Middle of Road","Highway"],
+c:1
+},
+
+{
+q:"What should you do before crossing a road?",
+a:["Run","Look both ways","Close eyes","Jump"],
+c:1
+},
+
+{
+q:"Seat belts are important because they...",
+a:["Look Good","Prevent Injury","Increase Speed","Save Fuel"],
+c:1
+}
+
+];
+
+let current=0;
+let score=0;
+
+function loadQuestion(){
+
+if(current==quiz.length){
+
+document.getElementById("quiz").style.display="none";
+
+document.getElementById("result").innerHTML=
+
+"🎉 Your Score : "+score+" / "+quiz.length;
+
+return;
+
+}
+
+document.getElementById("question").innerHTML=
+
+(current+1)+". "+quiz[current].q;
+
+let html="";
+
+quiz[current].a.forEach((option,index)=>{
+
+html+=`<button onclick="check(${index})">${option}</button>`;
+
+});
+
+document.getElementById("answers").innerHTML=html;
+
+}
+
+function check(answer){
+
+if(answer==quiz[current].c){
+
+score++;
+
+}
+
+current++;
+
+loadQuestion();
+
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
